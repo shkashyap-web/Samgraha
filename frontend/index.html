@@ -1,30 +1,51 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
 <title>Samgraha Clinical Dashboard</title>
 
 <style>
+
 body{
 font-family:Arial;
 background:#f4f6f8;
 margin:40px;
 }
 
+h1{
+color:#1f2937;
+}
+
+.card{
+background:white;
+padding:20px;
+margin-bottom:20px;
+border-radius:8px;
+box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+
 table{
 border-collapse:collapse;
 width:100%;
-background:white;
 }
 
 th,td{
 padding:10px;
 border:1px solid #ddd;
+text-align:left;
 }
 
 th{
 background:#2563eb;
 color:white;
 }
+
+.alert{
+color:red;
+font-weight:bold;
+}
+
 </style>
 
 </head>
@@ -35,18 +56,44 @@ color:white;
 
 <button onclick="loadData()">Load Patient Data</button>
 
+<div class="card">
+
+<h2>Clinical Risk Flag</h2>
+
+<p id="risk">No risk detected</p>
+
+</div>
+
+<div class="card">
+
+<h2>AI Clinical Briefing</h2>
+
+<p id="briefing">AI summary will appear here.</p>
+
+</div>
+
+<div class="card">
+
+<h2>Patient Visit Timeline</h2>
+
 <table id="table">
+
 <thead>
+
 <tr>
 <th>Patient</th>
 <th>Diagnosis</th>
 <th>Age</th>
 <th>Document</th>
 </tr>
+
 </thead>
 
 <tbody></tbody>
+
 </table>
+
+</div>
 
 <script>
 
@@ -57,6 +104,10 @@ const response = await fetch("https://bbpzt86hx1.execute-api.us-east-1.amazonaws
 const data = await response.json()
 
 const visits = data.visits
+
+document.getElementById("risk").innerText = data.risk_flag || "No major risk detected"
+
+document.getElementById("briefing").innerText = data.clinical_briefing
 
 const table = document.querySelector("#table tbody")
 
@@ -82,4 +133,5 @@ table.innerHTML += row
 </script>
 
 </body>
+
 </html>
