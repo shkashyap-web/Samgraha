@@ -214,3 +214,62 @@ if(uploadBox){
  });
 
 }
+
+
+// ===============================
+// CLINICAL KNOWLEDGE GRAPH
+// ===============================
+
+function loadKnowledgeGraph(){
+
+const nodes = new vis.DataSet([
+
+{ id:1, label:"Hypertension" },
+{ id:2, label:"High Cholesterol" },
+{ id:3, label:"Cardiovascular Risk" },
+{ id:4, label:"Medication" },
+{ id:5, label:"Heart Attack Risk" }
+
+]);
+
+const edges = new vis.DataSet([
+
+{ from:1, to:3 },
+{ from:2, to:3 },
+{ from:3, to:5 },
+{ from:4, to:3 }
+
+]);
+
+const container = document.getElementById("knowledgeGraph");
+
+const data = {
+
+nodes:nodes,
+edges:edges
+
+};
+
+const options = {
+
+nodes:{
+shape:"dot",
+size:20,
+font:{ size:16 }
+},
+
+edges:{
+arrows:"to"
+},
+
+physics:{
+enabled:true
+}
+
+};
+
+new vis.Network(container,data,options);
+
+}
+
+loadKnowledgeGraph();
