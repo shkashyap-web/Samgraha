@@ -1,13 +1,25 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
 <title>Samgraha AI Dashboard</title>
+
 <link rel="stylesheet" href="style.css">
+
+<!-- Chart.js for risk timeline -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
+
 
 <body>
 
+
+<!-- SIDEBAR -->
+
 <div class="sidebar">
+
 <h2>Samgraha AI</h2>
 
 <ul>
@@ -20,58 +32,137 @@
 </div>
 
 
+
+<!-- MAIN CONTENT -->
+
 <div class="main">
 
+
 <header>
+
 <h1>Clinical Dashboard</h1>
+
 <input placeholder="Search patients...">
+
 </header>
 
 
+
+<!-- UPLOAD PRESCRIPTION -->
+
+<div class="card upload-section">
+
+<h3>Upload Prescription</h3>
+
+<div id="uploadBox" class="upload-box">
+
+Drag and drop prescription here or click to upload
+
+</div>
+
+</div>
+
+
+
+<!-- PATIENT INFO + CLINICAL SIGNALS -->
+
 <div class="grid">
 
+
 <div class="card">
+
 <h3>Patient Info</h3>
-<p>Name: John Doe</p>
-<p>Age: 56</p>
-<p>ID: SG123456</p>
+
+<p>Name: <span id="patientName">John Doe</span></p>
+
+<p>Age: <span id="patientAge">56</span></p>
+
+<p>ID: <span id="patientID">SG123456</span></p>
+
 </div>
+
+
 
 <div class="card">
+
 <h3>Clinical Signals</h3>
-<p><b>Risk Alert:</b> High cardiovascular risk</p>
-<p><b>Doctor Insight:</b> Monitor BP closely</p>
-<p><b>AI Briefing:</b> Hypertension with rising cholesterol</p>
-</div>
+
+<p><b>Risk Alert:</b> <span id="riskAlert">High cardiovascular risk</span></p>
+
+<p><b>Doctor Insight:</b> <span id="doctorInsight">Monitor BP closely</span></p>
+
+<p><b>AI Briefing:</b> <span id="aiBriefing">Hypertension with rising cholesterol</span></p>
 
 </div>
 
+
+</div>
+
+
+
+<!-- RISK INDICATOR -->
+
+<div class="card">
+
+<h3>Risk Indicator</h3>
+
+<div id="riskIndicator" class="risk-indicator">
+
+LOW
+
+</div>
+
+</div>
+
+
+
+<!-- RISK TIMELINE GRAPH -->
+
+<div class="card">
+
+<h3>Patient Risk Timeline</h3>
+
+<canvas id="riskChart" height="120"></canvas>
+
+</div>
+
+
+
+<!-- PATIENT TIMELINE TABLE -->
 
 <div class="timeline card">
 
 <h3>Patient Timeline</h3>
 
-<table>
+<table id="timelineTable">
 
 <tr>
+
 <th>Date</th>
 <th>Diagnosis</th>
 <th>Tests</th>
 <th>Treatment</th>
+
 </tr>
 
+
 <tr>
+
 <td>12 Jan 2024</td>
 <td>Hypertension</td>
 <td>Blood Pressure</td>
 <td>Lisinopril</td>
+
 </tr>
 
+
 <tr>
+
 <td>2 Nov 2023</td>
 <td>High Cholesterol</td>
 <td>Lipid Panel</td>
 <td>Statins</td>
+
 </tr>
 
 </table>
@@ -79,7 +170,55 @@
 </div>
 
 
+
+<!-- DOCUMENT VIEWER -->
+
+<div class="card">
+
+<h3>Document Viewer</h3>
+
+<iframe
+
+id="documentViewer"
+width="100%"
+height="400"
+
+></iframe>
+
 </div>
+
+
+
+<!-- AI COPILOT -->
+
+<div class="card">
+
+<h3>AI Clinical Copilot</h3>
+
+<input
+id="copilotQuestion"
+placeholder="Ask AI about patient history"
+>
+
+<button onclick="askCopilot()">
+
+Ask AI
+
+</button>
+
+<p id="copilotAnswer"></p>
+
+</div>
+
+
+
+</div>
+
+
+
+<!-- Load script -->
+<script src="script.js"></script>
+
 
 </body>
 </html>
