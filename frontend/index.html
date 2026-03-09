@@ -7,8 +7,9 @@
 
 <link rel="stylesheet" href="style.css">
 
-<!-- Chart.js for risk timeline -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
 
 </head>
 
@@ -16,24 +17,24 @@
 <body>
 
 
-<!-- SIDEBAR -->
+<!-- Sidebar -->
 
 <div class="sidebar">
 
 <h2>Samgraha AI</h2>
 
 <ul>
+
 <li>Dashboard</li>
 <li>Patients</li>
 <li>Reports</li>
 <li>Settings</li>
+
 </ul>
 
 </div>
 
 
-
-<!-- MAIN CONTENT -->
 
 <div class="main">
 
@@ -48,89 +49,91 @@
 
 
 
-<!-- UPLOAD PRESCRIPTION -->
+<!-- Upload -->
 
-<div class="card upload-section">
+<div id="uploadBox" class="uploadBox card">
 
 <h3>Upload Prescription</h3>
 
-<div id="uploadBox" class="upload-box">
-
-Drag and drop prescription here or click to upload
-
-</div>
+<p>Drag & drop prescription or report PDF</p>
 
 </div>
 
 
 
-<!-- PATIENT INFO + CLINICAL SIGNALS -->
+<!-- Status Badges -->
+
+<div class="badgeContainer">
+
+<div id="riskBadge" class="badge">LOW RISK</div>
+
+<div id="medBadge" class="badge blue">MEDICATION ACTIVE</div>
+
+<div id="alertBadge" class="badge grey">NO ALERTS</div>
+
+</div>
+
+
+
+<!-- Patient + Signals -->
 
 <div class="grid">
-
 
 <div class="card">
 
 <h3>Patient Info</h3>
 
-<p>Name: <span id="patientName">John Doe</span></p>
-
-<p>Age: <span id="patientAge">56</span></p>
-
-<p>ID: <span id="patientID">SG123456</span></p>
+<p>Name: <span id="patientName"></span></p>
+<p>Age: <span id="patientAge"></span></p>
+<p>ID: <span id="patientID"></span></p>
 
 </div>
-
 
 
 <div class="card">
 
 <h3>Clinical Signals</h3>
 
-<p><b>Risk Alert:</b> <span id="riskAlert">High cardiovascular risk</span></p>
+<p><b>Risk Alert:</b> <span id="riskAlert"></span></p>
 
-<p><b>Doctor Insight:</b> <span id="doctorInsight">Monitor BP closely</span></p>
+<p><b>Doctor Insight:</b> <span id="doctorInsight"></span></p>
 
-<p><b>AI Briefing:</b> <span id="aiBriefing">Hypertension with rising cholesterol</span></p>
-
-</div>
-
+<p><b>AI Briefing:</b> <span id="aiBriefing"></span></p>
 
 </div>
 
 
+</div>
 
-<!-- RISK INDICATOR -->
+
+
+<!-- Risk Indicator -->
 
 <div class="card">
 
 <h3>Risk Indicator</h3>
 
-<div id="riskIndicator" class="risk-indicator">
-
-LOW
-
-</div>
+<div id="riskIndicator"></div>
 
 </div>
 
 
 
-<!-- RISK TIMELINE GRAPH -->
+<!-- Risk Timeline -->
 
 <div class="card">
 
 <h3>Patient Risk Timeline</h3>
 
-<canvas id="riskChart" height="120"></canvas>
+<canvas id="riskChart"></canvas>
 
 </div>
 
 
 
-<!-- PATIENT TIMELINE TABLE -->
+<!-- Patient Timeline -->
 
-<div class="timeline card">
+<div class="card">
 
 <h3>Patient Timeline</h3>
 
@@ -145,66 +148,45 @@ LOW
 
 </tr>
 
-
-<tr>
-
-<td>12 Jan 2024</td>
-<td>Hypertension</td>
-<td>Blood Pressure</td>
-<td>Lisinopril</td>
-
-</tr>
-
-
-<tr>
-
-<td>2 Nov 2023</td>
-<td>High Cholesterol</td>
-<td>Lipid Panel</td>
-<td>Statins</td>
-
-</tr>
-
 </table>
 
 </div>
 
 
 
-<!-- DOCUMENT VIEWER -->
+<!-- Clinical Knowledge Graph -->
 
 <div class="card">
 
-<h3>Document Viewer</h3>
+<h3>Clinical Knowledge Graph</h3>
 
-<iframe
-
-id="documentViewer"
-width="100%"
-height="400"
-
-></iframe>
+<div id="knowledgeGraph"></div>
 
 </div>
 
 
 
-<!-- AI COPILOT -->
+<!-- Document Viewer -->
+
+<div class="card">
+
+<h3>Document Viewer</h3>
+
+<iframe id="documentFrame"></iframe>
+
+</div>
+
+
+
+<!-- AI Copilot -->
 
 <div class="card">
 
 <h3>AI Clinical Copilot</h3>
 
-<input
-id="copilotQuestion"
-placeholder="Ask AI about patient history"
->
+<input id="copilotQuestion" placeholder="Ask AI about patient history">
 
-<button onclick="askCopilot()">
-
-Ask AI
-
-</button>
+<button onclick="askCopilot()">Ask AI</button>
 
 <p id="copilotAnswer"></p>
 
@@ -215,10 +197,8 @@ Ask AI
 </div>
 
 
-
-<!-- Load script -->
 <script src="script.js"></script>
 
-
 </body>
+
 </html>
